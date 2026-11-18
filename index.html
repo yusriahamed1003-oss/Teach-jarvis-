@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teach Jarvis | Student Learning Platform</title>
+<meta name="theme-color" content="#101b3d">
+<meta name="description" content="Teach Jarvis - your personal student learning companion.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+
+<style>
+:root{--navy:#101b3d;--blue:#4169e1;--cyan:#56c7e8;--ink:#18233f;--muted:#71809d;--bg:#f4f7fc;--card:#fff;--line:#e7ecf5;--green:#20a67a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+.app{display:flex;min-height:100vh}.sidebar{width:250px;background:var(--navy);color:white;padding:24px 16px;display:flex;flex-direction:column;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 10px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#61d5ee,#5575f3);display:grid;place-items:center;font-size:22px}.brand strong{font-size:18px;letter-spacing:.5px}.brand small{display:block;color:#aebbe0;font-size:11px;margin-top:2px}
+.nav-label{font-size:10px;color:#8190bb;letter-spacing:1.5px;padding:0 12px;margin-bottom:-12px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#cbd4ed;text-align:left;padding:12px;border-radius:12px;font-size:14px;cursor:pointer}.nav button.active,.nav button:hover{background:#26365f;color:white}.nav button span{display:inline-block;width:25px}
+.side-bottom{margin-top:auto;background:#1b2b55;border:1px solid #30416e;padding:15px;border-radius:16px;font-size:12px;color:#cbd4ed;line-height:1.5}
+main{flex:1;min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px}.topbar .crumb{font-size:13px;color:var(--muted)}.profile{display:flex;align-items:center;gap:10px;font-size:13px}.avatar{width:36px;height:36px;border-radius:50%;background:#e4edff;color:#3157c9;display:grid;place-items:center;font-weight:800}
+.content{max-width:1200px;padding:30px 34px;margin:auto}.welcome{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}.welcome h1{margin:0 0 7px;font-size:27px}.welcome p{margin:0;color:var(--muted);font-size:14px}.date-pill{background:white;border:1px solid var(--line);padding:10px 14px;border-radius:12px;color:#5e6b87;font-size:12px}
+.hero{background:linear-gradient(115deg,#172957,#3157b9 65%,#4a83d9);color:white;padding:26px 28px;border-radius:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;margin-bottom:22px}.hero h2{font-size:23px;margin:0 0 8px}.hero p{color:#dbe6ff;font-size:13px;max-width:510px;line-height:1.6;margin:0 0 17px}.hero .hero-art{font-size:75px;opacity:.9}.btn{border:0;background:var(--blue);color:#fff;padding:10px 15px;border-radius:10px;font-weight:650;cursor:pointer;font-size:13px}.btn.light{background:#fff;color:#274cae}.btn.outline{background:white;border:1px solid var(--line);color:var(--ink)}.btn.small{padding:7px 11px;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}.stat,.panel,.feature{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:18px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:12px}.stat small{color:var(--green);font-size:11px}
+.columns{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}.panel h3{margin:0 0 15px;font-size:16px}.muted{color:var(--muted);font-size:13px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature{padding:15px;cursor:pointer;transition:.15s}.feature:hover{border-color:#a9bdf7;transform:translateY(-2px)}.feature .ico{font-size:24px;margin-bottom:10px}.feature b{display:block;font-size:13px}.feature small{color:var(--muted);font-size:11px;line-height:1.4}
+.task{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.task:last-child{border:0}.task input{accent-color:var(--blue)}.tag{font-size:10px;color:#4765bf;background:#edf2ff;padding:5px 8px;border-radius:20px;margin-left:auto}
+.page{display:none}.page.active{display:block}.formrow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.field{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit;font-size:13px;min-width:150px}.wide{width:100%}.chatbox{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:180px;max-height:330px;overflow:auto}.bubble{padding:11px 13px;border-radius:13px;margin:8px 0;max-width:85%;font-size:13px;line-height:1.5}.bot{background:#eaf0ff}.user{background:#dff7f1;margin-left:auto}.bookgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.book{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.book .cover{height:95px;border-radius:10px;background:linear-gradient(135deg,#e2edff,#d8f6f3);display:grid;place-items:center;font-size:35px;margin-bottom:12px}.book b{font-size:13px}.book p{font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:12px 9px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-weight:600}.notice{padding:13px;background:#fff8e7;border:1px solid #f4e4b9;border-radius:12px;color:#765a16;font-size:12px;line-height:1.5;margin-top:16px}
+.progress{height:8px;background:#edf1f8;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#4d71e7,#57c9db);width:62%}
+footer{text-align:center;color:#9aa5bb;font-size:11px;padding:25px}
+@media(max-width:900px){.sidebar{width:205px}.grid{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.quick{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.app{display:block}.sidebar{width:100%;padding:13px;gap:12px}.brand{padding:0 6px}.nav-label,.side-bottom{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px;font-size:12px}.nav button span{width:auto;margin-right:5px}.topbar{height:55px;padding:0 17px}.content{padding:20px 15px}.welcome{align-items:flex-start;flex-direction:column}.hero{padding:20px}.hero-art{display:none}.grid{gap:9px}.stat{padding:13px}.bookgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="logo">✦</div><div><strong>TEACH JARVIS</strong><small>LEARN • PRACTISE • GROW</small></div></div>
+ <div class="nav-label">LEARNING SPACE</div>
+ <nav class="nav">
+  <button class="active" data-page="home"><span>⌂</span>Dashboard</button>
+  <button data-page="teacher"><span>✧</span>AI Teacher</button>
+  <button data-page="library"><span>▤</span>Textbook Library</button>
+  <button data-page="planner"><span>▦</span>Student Planner</button>
+  <button data-page="timetable"><span>◷</span>Study Timetable</button>
+  <button data-page="quiz"><span>✓</span>Quiz Centre</button>
+  <button data-page="progress"><span>▥</span>My Progress</button>
+  <button data-page="profile"><span>◎</span>My Profile</button>
+ </nav>
+ <div class="side-bottom">💡 <b>Study tip</b><br>Small study sessions with short breaks can help you stay focused. Keep going!</div>
+</aside>
+<main>
+ <header class="topbar"><div class="crumb">Student Portal / <b id="crumb">Dashboard</b></div><div style="display:flex;align-items:center;gap:12px"><button class="btn small" id="installBtn" style="display:none">＋ Install app</button><div class="profile"><div class="avatar">S</div><div><b>Student Preview</b><div class="muted" style="font-size:10px">Grade 8 • Demo profile</div></div></div></div></header>
+ <div class="content">
+  <section class="page active" id="home">
+   <div class="welcome"><div><h1>Welcome to Teach Jarvis 👋</h1><p>Your learning journey starts here. What would you like to learn today?</p></div><div class="date-pill">✦ Your personal learning space</div></div>
+   <div class="hero"><div><h2>Learn smarter, one step at a time.</h2><p>Ask questions, explore your subjects, organise homework and prepare for exams with your learning companion.</p><button class="btn light" onclick="showPage('teacher')">Ask the AI Teacher →</button></div><div class="hero-art">🎓</div></div>
+   <div class="grid">
+    <div class="stat"><div class="stat-top">Homework tasks <span>📚</span></div><strong id="taskCount">3</strong><small>Keep your tasks organised</small></div>
+    <div class="stat"><div class="stat-top">Completed <span>✓</span></div><strong id="doneCount">1</strong><small>Good progress!</small></div>
+    <div class="stat"><div class="stat-top">Subjects <span>🗂️</span></div><strong>8</strong><small>Your Grade 8 subjects</small></div>
+    <div class="stat"><div class="stat-top">Study goal <span>🎯</span></div><strong>60 min</strong><small>Suggested daily goal</small></div>
+   </div>
+   <div class="columns"><div class="panel"><h3>Explore your learning tools</h3><div class="quick">
+    <div class="feature" onclick="showPage('teacher')"><div class="ico">🤖</div><b>AI Teacher</b><small>Ask and understand</small></div>
+    <div class="feature" onclick="showPage('library')"><div class="ico">📚</div><b>Books & Notes</b><small>Find learning materials</small></div>
+    <div class="feature" onclick="showPage('planner')"><div class="ico">📝</div><b>Homework</b><small>Track your tasks</small></div>
+    <div class="feature" onclick="showPage('timetable')"><div class="ico">🗓️</div><b>Timetable</b><small>Plan study time</small></div>
+    <div class="feature" onclick="showPage('quiz')"><div class="ico">🧠</div><b>Quiz Centre</b><small>Test your knowledge</small></div>
+    <div class="feature" onclick="showPage('progress')"><div class="ico">📈</div><b>Progress</b><small>See your growth</small></div>
+   </div></div>
+   <div class="panel"><h3>Upcoming homework</h3><div id="homeTasks"><div class="task">☐ Science – Read lesson 3 <span class="tag">Tomorrow</span></div><div class="task">☑ English – Write a paragraph <span class="tag">Done</span></div><div class="task">☐ Mathematics – Exercise 5 <span class="tag">Friday</span></div></div></div></div>
+  </section>
+  <section class="page" id="teacher"><div class="welcome"><div><h1>AI Teacher 🤖</h1><p>Ask a school question and practise understanding it.</p></div></div><div class="panel"><div class="chatbox" id="chat"><div class="bubble bot">Hello! I'm your Teach Jarvis learning assistant. What topic are you studying today?</div></div><div class="formrow"><input id="question" class="field" style="flex:1" placeholder="Type your school question..." onkeydown="if(event.key==='Enter')ask()"><button class="btn" onclick="ask()">Send</button></div><div class="muted">Demo mode: replies are examples. A real AI service still needs to be connected.</div></div></section>
+  <section class="page" id="library"><div class="welcome"><div><h1>Textbook Library 📚</h1><p>Choose your grade and subject to explore learning resources.</p></div></div><div class="panel"><div class="formrow"><select class="field" id="grade"><option>Grade 8</option><option>Grade 7</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option><option>Grade 13</option></select><select class="field" id="subject"><option>Science</option><option>Mathematics</option><option>English</option><option>History</option><option>Geography</option><option>Civics</option><option>PTS</option><option>Health</option><option>Tamil</option><option>Sinhala</option></select><button class="btn" onclick="findBooks()">Find materials</button></div><div class="bookgrid" id="books"><div class="book"><div class="cover">📘</div><b>Textbook</b><p>Official or authorised textbook PDF</p></div><div class="book"><div class="cover">🗒️</div><b>Teachers' Notes</b><p>Lesson summaries and key points</p></div><div class="book"><div class="cover">✍️</div><b>Practice Papers</b><p>Revision exercises and past papers</p></div></div><div class="notice">Resource preview only. Real PDFs and downloads must be added from official or properly licensed sources.</div></div></section>
+  <section class="page" id="planner"><div class="welcome"><div><h1>Student Planner 📝</h1><p>Add homework and tick it off when finished.</p></div></div><div class="panel"><h3>Add homework</h3><div class="formrow"><input class="field" id="taskInput" placeholder="Homework description" style="flex:1"><select class="field" id="taskSubject"><option>Science</option><option>Mathematics</option><option>English</option><option>History</option><option>Geography</option><option>Civics</option><option>PTS</option></select><input class="field" id="taskDate" type="date"><button class="btn" onclick="addTask()">Add task</button></div><h3 style="margin-top:25px">My homework</h3><div id="taskList"></div></div></section>
+  <section class="page" id="timetable">
+   <div class="welcome"><div><h1>Study Timetable 🗓️</h1><p>Create your own weekly study timetable or fill it with a suggested plan.</p></div></div>
+   <div class="panel">
+    <h3>Add a study session</h3>
+    <div class="formrow">
+     <select class="field" id="studyDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+     <input class="field" id="studySubject" placeholder="Subject or activity">
+     <input class="field" id="studyStart" type="time" value="16:00" aria-label="Start time">
+     <input class="field" id="studyEnd" type="time" value="16:30" aria-label="End time">
+     <button class="btn" onclick="addStudySession()">＋ Add session</button>
+    </div>
+    <div class="formrow">
+     <button class="btn" onclick="makePlan()">✨ Fill with suggested timetable</button>
+     <button class="btn outline" onclick="clearTimetable()">Clear timetable</button>
+    </div>
+    <p class="muted">You can add your own subjects, days and times. Your timetable is saved in this browser on this device.</p>
+   </div>
+   <div class="panel" style="margin-top:16px">
+    <h3>My weekly study timetable</h3>
+    <div style="overflow:auto"><table id="schedule"><thead><tr><th>Day</th><th>Time</th><th>Subject / activity</th><th>Action</th></tr></thead><tbody id="scheduleBody"></tbody></table></div>
+    <p id="emptySchedule" class="muted">No sessions yet. Add your first study session above.</p>
+   </div>
+  </section>
+  <section class="page" id="quiz"><div class="welcome"><div><h1>Quiz Centre 🧠</h1><p>Try a quick sample question.</p></div></div><div class="panel"><div class="muted">SCIENCE • SAMPLE QUIZ</div><h3 style="margin-top:12px">Which part of a plant mainly absorbs water from the soil?</h3><div id="quizOptions" style="display:grid;gap:10px;max-width:420px"><button class="btn outline" onclick="answer(this,false)">Leaves</button><button class="btn outline" onclick="answer(this,true)">Roots</button><button class="btn outline" onclick="answer(this,false)">Flowers</button></div><p id="quizResult" class="muted"></p></div></section>
+  <section class="page" id="progress"><div class="welcome"><div><h1>My Progress 📈</h1><p>Celebrate the effort you put into learning.</p></div></div><div class="grid"><div class="stat"><div class="stat-top">Tasks completed</div><strong id="progressDone">1</strong><small>From your planner</small></div><div class="stat"><div class="stat-top">Current grade</div><strong>8</strong><small>Student profile preview</small></div><div class="stat"><div class="stat-top">Learning streak</div><strong>2 days</strong><small>Demo information</small></div><div class="stat"><div class="stat-top">Study goal</div><strong>62%</strong><small>Sample progress</small></div></div><div class="panel"><h3>Weekly learning goal</h3><div class="progress"><i></i></div><p class="muted">62% of this sample weekly goal. Real progress will update when connected to student accounts.</p></div></section>
+  <section class="page" id="profile"><div class="welcome"><div><h1>My Profile 👤</h1><p>Your student details and learning preferences.</p></div></div><div class="panel" style="max-width:650px"><div class="formrow"><label class="muted" style="width:100%">Full name</label><input class="field wide" value="Student Preview" id="studentName"></div><div class="formrow"><label class="muted" style="width:100%">Gmail address</label><input class="field wide" placeholder="Will appear after Google sign-in" disabled></div><div class="formrow"><label class="muted" style="width:100%">Date of birth</label><input class="field" type="date"></div><div class="formrow"><label class="muted" style="width:100%">School grade</label><select class="field"><option>Grade 8</option><option>Grade 7</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option><option>Grade 13</option></select></div><button class="btn" onclick="alert('This is a preview. Profile saving will work after the secure account database is connected.')">Save profile (preview)</button><div class="notice">This preview does not collect or transmit your details. Real registration should use secure Google authentication and a protected database.</div></div></section>
+  <footer>TEACH JARVIS • Learn • Practise • Grow<br>Interactive front-end preview • Not yet connected to live accounts or AI</footer>
+ </div>
+</main>
+</div>
+<script>
+const pages=['home','teacher','library','planner','timetable','quiz','progress','profile'];
+function showPage(id){pages.forEach(p=>document.getElementById(p).classList.toggle('active',p===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('crumb').textContent=document.querySelector('[data-page="'+id+'"]').textContent.trim()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function ask(){let input=document.getElementById('question'),q=input.value.trim();if(!q)return;let chat=document.getElementById('chat');chat.innerHTML+='<div class="bubble user"></div>';chat.lastElementChild.textContent=q;let reply='Good question! Try breaking it into smaller parts. First, identify the key idea, then write what you already know. This is a sample response; connect a real AI service to get subject-specific answers.';chat.innerHTML+='<div class="bubble bot"></div>';chat.lastElementChild.textContent=reply;input.value='';chat.scrollTop=chat.scrollHeight}
+function findBooks(){let g=document.getElementById('grade').value,s=document.getElementById('subject').value;document.querySelectorAll('#books .book p').forEach((p,i)=>p.textContent=[g+' '+s+' textbook resource',g+' '+s+' lesson notes','Practice activities for '+s][i])}
+const defaultTasks=[{text:'Science – Read lesson 3',subject:'Science',date:'Tomorrow',done:false},{text:'English – Write a paragraph',subject:'English',date:'Done',done:true},{text:'Mathematics – Exercise 5',subject:'Mathematics',date:'Friday',done:false}];
+let tasks=[];
+try {
+ const savedTasks=localStorage.getItem('tjTasks');
+ tasks=savedTasks===null ? defaultTasks : JSON.parse(savedTasks);
+ if(!Array.isArray(tasks)) tasks=defaultTasks;
+} catch(e) { tasks=defaultTasks; }
+function saveTasks(){ try { localStorage.setItem('tjTasks',JSON.stringify(tasks)); } catch(e) {} }
+function renderTasks(){saveTasks();let list=document.getElementById('taskList');list.innerHTML='';tasks.forEach((t,i)=>{let row=document.createElement('div');row.className='task';let cb=document.createElement('input');cb.type='checkbox';cb.checked=t.done;cb.onchange=()=>{t.done=cb.checked;renderTasks()};let label=document.createElement('span');label.textContent=t.text;label.style.textDecoration=t.done?'line-through':'none';let tag=document.createElement('span');tag.className='tag';tag.textContent=t.done?'Completed':t.date||'No due date';row.append(cb,label,tag);list.append(row)});document.getElementById('taskCount').textContent=tasks.length;document.getElementById('doneCount').textContent=tasks.filter(t=>t.done).length;document.getElementById('progressDone').textContent=tasks.filter(t=>t.done).length;let home=document.getElementById('homeTasks');home.innerHTML='';tasks.slice(0,4).forEach(t=>{let d=document.createElement('div');d.className='task';d.textContent=(t.done?'☑ ':'☐ ')+t.text;let tag=document.createElement('span');tag.className='tag';tag.textContent=t.done?'Done':t.date||'To do';d.append(tag);home.append(d)})}
+function addTask(){let v=document.getElementById('taskInput').value.trim();if(!v)return;tasks.push({text:document.getElementById('taskSubject').value+' – '+v,subject:document.getElementById('taskSubject').value,date:document.getElementById('taskDate').value||'No due date',done:false});document.getElementById('taskInput').value='';renderTasks()}
+let studySessions = [];
+try { studySessions = JSON.parse(localStorage.getItem('tjStudySessions') || '[]'); } catch(e) { studySessions = []; }
+function saveStudySessions(){ try { localStorage.setItem('tjStudySessions', JSON.stringify(studySessions)); } catch(e) {} }
+function renderTimetable(){
+ const body=document.getElementById('scheduleBody'); if(!body) return;
+ body.innerHTML='';
+ const dayOrder=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+ studySessions.sort((a,b)=>dayOrder.indexOf(a.day)-dayOrder.indexOf(b.day) || a.start.localeCompare(b.start));
+ studySessions.forEach((s,i)=>{
+  const tr=document.createElement('tr');
+  [s.day, s.start+'–'+s.end, s.subject].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td)});
+  const action=document.createElement('td');const del=document.createElement('button');del.className='btn outline small';del.textContent='Remove';del.onclick=()=>{studySessions.splice(i,1);saveStudySessions();renderTimetable()};action.appendChild(del);tr.appendChild(action);body.appendChild(tr);
+ });
+ document.getElementById('emptySchedule').style.display=studySessions.length?'none':'block';
+}
+function addStudySession(){
+ const day=document.getElementById('studyDay').value;
+ const subject=document.getElementById('studySubject').value.trim();
+ const start=document.getElementById('studyStart').value;
+ const end=document.getElementById('studyEnd').value;
+ if(!subject){alert('Please enter a subject or activity.');return}
+ if(!start||!end||end<=start){alert('Please choose an end time later than the start time.');return}
+ studySessions.push({day,subject,start,end});saveStudySessions();renderTimetable();
+ document.getElementById('studySubject').value='';
+}
+function makePlan(){
+ studySessions=[
+  {day:'Monday',subject:'Science',start:'16:00',end:'16:30'},
+  {day:'Monday',subject:'Mathematics',start:'16:40',end:'17:10'},
+  {day:'Tuesday',subject:'Mathematics',start:'16:00',end:'16:30'},
+  {day:'Tuesday',subject:'History',start:'16:40',end:'17:10'},
+  {day:'Wednesday',subject:'English',start:'16:00',end:'16:30'},
+  {day:'Wednesday',subject:'Science',start:'16:40',end:'17:10'},
+  {day:'Thursday',subject:'Geography',start:'16:00',end:'16:30'},
+  {day:'Thursday',subject:'Civics',start:'16:40',end:'17:10'},
+  {day:'Friday',subject:'PTS',start:'16:00',end:'16:30'},
+  {day:'Friday',subject:'Health',start:'16:40',end:'17:10'}
+ ];
+ saveStudySessions();renderTimetable();
+}
+function answer(btn,correct){document.querySelectorAll('#quizOptions button').forEach(b=>b.disabled=true);document.getElementById('quizResult').textContent=correct?'Correct! Roots absorb water and minerals from the soil. 🌟':'Not quite. The correct answer is Roots. They absorb water and minerals from the soil.';document.getElementById('quizResult').style.color=correct?'#16845f':'#b36a20'}
+function updateConnectionStatus(){
+ const el=document.getElementById('connectionStatus');
+ if(!el) return;
+ el.textContent=navigator.onLine?'● Online':'● Offline — saved work is available';
+ el.style.color=navigator.onLine?'#16845f':'#b36a20';
+}
+window.addEventListener('online',updateConnectionStatus);
+window.addEventListener('offline',updateConnectionStatus);
+updateConnectionStatus();
+renderTasks();
+renderTimetable();
+</script>
+
+<script>
+let deferredInstallPrompt = null;
+const installBtn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  if (installBtn) installBtn.style.display = 'inline-block';
+});
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) {
+      alert('To install: open the browser menu and choose Install app or Add to Home screen.');
+      return;
+    }
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installBtn.style.display = 'none';
+  });
+}
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+}
+</script>
+
+</body></html>
