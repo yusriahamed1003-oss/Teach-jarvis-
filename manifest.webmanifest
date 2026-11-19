@@ -1,26 +1,14 @@
-{
-  "id": "./",
-  "name": "Teach Jarvis",
-  "short_name": "Teach Jarvis",
-  "description": "Your personal AI-powered student learning companion.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#f4f7fc",
-  "theme_color": "#101b3d",
-  "orientation": "any",
-  "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ]
-}
+"icons": [
+  {
+    "src": "icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any"
+  }
+]
