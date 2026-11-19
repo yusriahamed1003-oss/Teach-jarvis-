@@ -1,6 +1,6 @@
 {
   "id": "./",
-  "name": "Teach Jarvis - Student Learning",
+  "name": "Teach Jarvis",
   "short_name": "Teach Jarvis",
   "description": "Your personal AI-powered student learning companion.",
   "start_url": "./",
@@ -11,15 +11,15 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "icons/icon-192.svg",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512.svg",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

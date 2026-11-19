@@ -32,3 +32,9 @@ PWA / OFFLINE TEST
 
 ANDROID APK
 GitHub Pages does not create an APK. Android packaging/signing is a separate later step and needs an Android build environment. The Chromebook may not support every Android packaging tool.
+
+
+BRANDING UPDATE
+The app icons are now the new futuristic Teach Jarvis TJ logo.
+The manifest points to icons/icon-192.png and icons/icon-512.png.
+Upload the contents of this folder to the repository root, keeping the icons folder.
